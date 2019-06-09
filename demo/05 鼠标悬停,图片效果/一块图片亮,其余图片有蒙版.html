@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            background: #000;
+        }
+
+        .wrap {
+            margin: 100px auto 0;
+            width: 630px;
+			height: 394px;
+            padding: 10px 0 0 10px;
+            background: #000;
+            overflow: hidden;
+            border: 1px solid #fff;
+        }
+
+        .wrap li {
+            float: left;
+            margin: 0 10px 10px 0;
+
+        }
+
+        .wrap img {
+            display: block;
+			border: 0;
+        }
+    </style>
+    <script type="text/javascript" src="CDN/jquery-1.11.1.js"></script>
+    <script type="text/javascript">
+    jQuery(window).ready(function(){
+    	//需求: 鼠标放入li中,其他的li都变透明,当前盒子不透明; 鼠标离开这个盒子, 全部都不透明 
+    	//opacity 不透明度 1   0完全透明
+    	$(".wrap").find("li").mouseenter(function(){
+    		$(this).css("opacity",1).siblings("li").css("opacity",0.5);
+    	})
+    	$(".wrap").mouseleave(function(){
+    		$(this).children().children("li").css("opacity",1);
+    	})
+    });
+	
+//	方法二
+//	$(function(){
+//		$(".wrap>ul").find("li").mouseenter(function(){
+//			$(this).css("opacity",1).siblings("li").css("opacity",0.5);
+//		})
+//		$(".wrap>ul").find("li").mouseleave(function(){
+//			$(this).css("opacity",1).siblings("li").css("opacity",1);
+//		})
+//	})
+
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <ul>
+            <li><a href="#"><img src="images/01.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/02.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/03.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/04.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/05.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/06.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+</body>
+</html>

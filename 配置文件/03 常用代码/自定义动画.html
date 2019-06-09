@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		div{
+			position: absolute;
+			left:20px;
+			top:30px;
+			width: 100px;
+			height: 100px;
+			background: pink;
+		}
+	</style>
+	<script type="text/javascript" src="CDN/jquery-1.11.1.js"></script>
+	<script type="text/javascript">
+     $(function(){
+         $("button").click(function(){
+         		// key:value
+         	var jieguo = {
+         		"width":500,
+         		"height":300,
+         		"left":500,
+         		"border-radius":30
+         	}
+
+         	// $("div").animate({"height":500,"width":300,"left":200},2000)
+          	$("div").animate(jieguo,2000)
+         })
+     })
+
+//	练习
+//	$(function(){
+//		$("button").click(function(){
+//			var dongHua = {
+//				"width":200,
+//				"height":200,
+//				"left":200,
+//				"border-radius":50
+//			}
+//			$("div").animate(dongHua,1000);
+//		})
+//	})
+	</script>
+</head>
+<body>
+	<button>动画</button>
+	<div></div>
+</body>
+</html>

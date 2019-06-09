@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		input.error,textarea.error{
+			border:10px solid red;
+		}
+	</style>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+</head>
+<body>
+<form id="signupForm">
+<fieldset>
+	<legend>验证完整的表单</legend>
+	<p>
+		<label for="firstname">名字</label>
+		<input type="text" name="firstname" id="firstname"/>
+	</p>
+	<p>
+		<label for="lastname">姓氏</label>
+		<input type="text" name="lastname" id="lastname"/>
+	</p>
+	<p>
+		<label for="username">用户名</label>
+		<input type="text" name="username" id="username"/>
+	</p>
+	<p>
+		<label for="password">密码</label>
+		<input type="password" name="password" id="password"/>
+	</p>
+	<p>
+		<label for="confirm_password">确认密码</label>
+		<input type="password" name="confirm_password" id="confirm_password"/>
+	</p>
+	<p>
+		<label for="email">邮箱</label>
+		<input type="email" name="email" id="email"/>
+	</p>
+	<p>
+		<label for="agree">
+			请同意我们的声明
+			<input type="checkbox" name="agree" id="agree"/>
+		</label>			
+	</p>
+	<p>
+		<label for="newsletter">
+			我乐意接受消息
+			<input type="checkbox" name="newsletter" id="newsletter"/>
+		</label>			
+	</p>
+	<fieldset>
+		<legend>主题(至少选两个)</legend>
+		<label for="topic_marketflash">	
+			<input type="checkbox" 
+			id="topic_marketflash" name="topic" value="marketflash"/>
+			市场快报
+		</label>
+		<label for="topic_fuzz">	
+			<input type="checkbox" 
+			id="topic_fuzz" name="topic" value="fuzz"/>
+			最新行情
+		</label>
+		<label for="topic_digester">	
+			<input type="checkbox" 
+			id="topic_digester" name="topic" value="digester"/>
+			分发
+		</label>
+		<label for="topic" class="error">请选择至少两个话题</label>
+	</fieldset>
+	<input type="submit" />
+</fieldset>
+
+</form>
+<script type="text/javascript">
+	$("#signupForm").validate({
+		rules:{
+			firstname:'required',
+			lastname:'required',
+			username:{
+				'required':true,
+				'minlength':5
+			},
+			password:{
+				'required':true,
+				'minlength':10
+			},
+			confirm_password:{
+				'required':true,
+				'minlength':10,
+				'equalTo':'#password'
+			}
+		},
+		//自定义验证消息
+		messages:{
+			confirm_password:{
+				required:'请输入密码用来确认',
+				minlength:'必须输入10个,要不然打死你',
+				equalTo:'二货,你不感觉你输入的不一样吗'
+			}
+		}
+	})
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<!--页面滑动大盒子-->
+			<div id="slider" class="M-mui-slider mui-slider mui-fullscreen">
+				<!--切换title盒子-->
+				<div class="M-mui-scroll-wrapper mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="M-mui-scroll mui-scroll">
+						<!--切换title内容-->
+						<a class="M-mui-control-item mui-control-item M-mui-active mui-active" data-index="0">卡片</a>
+						<a class="M-mui-control-item mui-control-item" M-data-index="1">图表</a>
+						<a class="M-mui-control-item mui-control-item" M-data-index="2">其他</a>
+						<!--切换title内容-->
+					</div>
+				</div>
+				<!--切换title盒子-->
+				<!--切换内容大盒子-->
+				<div class="mui-slider-group">
+					<!--切换内容1-->
+					<div class="mui-slider-item mui-control-content M-mui-active mui-active">
+						<div class="M-mui-scroll-wrapper mui-scroll-wrapper">
+							<div class="M-mui-scroll mui-scroll">
+								内容1
+							</div>
+						</div>
+					</div>
+					<!--切换内容1-->
+					<!--切换内容2-->
+					<div class="mui-slider-item mui-control-content">
+						<div class="M-mui-scroll-wrapper mui-scroll-wrapper">
+							<div class="M-mui-scroll mui-scroll">
+								2自己添加的内容jlkjlkjl
+							</div>
+						</div>
+					</div>
+					<!--切换内容2-->
+					<!--切换内容3-->
+					<div class="mui-slider-item mui-control-content">
+						<div class="M-mui-scroll-wrapper mui-scroll-wrapper">
+							<div class="M-mui-scroll mui-scroll">
+								3自行脑补页面112
+							</div>
+						</div>
+					</div>
+					<!--切换内容3-->
+				</div>
+				<!--切换内容大盒子-->
+			</div>
+			<!--页面滑动大盒子-->
+		</div>
+		
+		<script type="text/javascript">
+			mui.ready(function() {
+				mui('.M-mui-scroll-wrapper').scroll({
+					bounce: true,
+					indicators: true,
+					deceleration: mui.os.ios ? 0.003 : 0.0009
+				});
+				mui('.M-mui-scroll').on('tap', '.M-mui-control-item:not(.M-mui-active)', function() {
+					mui('.M-mui-slider').slider().gotoItem(this.getAttribute('M-data-index'));
+				});
+			});
+		</script>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,118 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3D图片颗粒化翻转-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+* {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#box {
+	width:700px;
+	height:400px;
+	margin:20px auto;
+	position:relative;
+	perspective:800px;
+}
+#box span {
+	position:absolute;
+	background:url(http://www.jq22.com/img/cs/500x300-1.png) no-repeat;
+	transform-style:preserve-3d;
+	transition:1s all ease;
+	transform-origin:top center;
+}
+#box span em {
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+#box span em.front {
+	background:url(http://www.jq22.com/img/cs/500x300-1.png) no-repeat;
+	transform:translateZ(0.1px);
+}
+#box span em.back {
+	background:url(http://www.jq22.com/img/cs/500x300-2.png) no-repeat;
+	transform:translateZ(-0.1px) scale(-1,1);
+}
+</style>
+</head>
+<body>
+点击图片
+<div id="box"></div>
+
+<script>
+window.onload = function() {
+    var oBox = document.getElementById('box');
+    var R = 4;
+    var C = 7;
+    for (var r = 0; r < R; r++) {
+        for (var c = 0; c < C; c++) {
+            var oSpan = document.createElement('span');
+            oSpan.style.width = oBox.offsetWidth / C + 'px';
+            oSpan.style.height = oBox.offsetHeight / R + 'px';
+            oBox.appendChild(oSpan);
+            oSpan.style.left = c * oSpan.offsetWidth + 'px';
+            oSpan.style.top = r * oSpan.offsetHeight + 'px';
+            oSpan.style.backgroundPosition = '-' + c * oSpan.offsetWidth + 'px -' + r * oSpan.offsetHeight + 'px';
+
+            oSpan.innerHTML = '<em class="front"></em><em class="back"></em>';
+            oSpan.children[0].style.backgroundPosition = '-' + c * oSpan.offsetWidth + 'px -' + r * oSpan.offsetHeight + 'px';
+            oSpan.children[1].style.backgroundPosition = '-' + c * oSpan.offsetWidth + 'px -' + r * oSpan.offsetHeight + 'px';
+            oSpan.r = r;
+            oSpan.c = c;
+        }
+    }
+
+    var iNow = 1;
+
+    var bReady = true;
+
+    oBox.onclick = function() {
+        var aSpan = oBox.children;
+
+        if (bReady == false) return;
+        bReady = false;
+
+        iNow++;
+
+
+        for (var i = 0; i < aSpan.length; i++) {
+            (function(i) {
+                setTimeout(function() {
+                    aSpan[i].style.transition = '1s all ease';
+                    aSpan[i].style.transform = 'rotateY(180deg)';
+
+                    if (aSpan[i].r == R - 1 && aSpan[i].c == C - 1) {
+                        aSpan[i].addEventListener('transitionend', function() {
+                            changeNext();
+                        }, false);
+                    }
+                }, 200 * (aSpan[i].r + aSpan[i].c));
+            })(i);
+        }
+
+        function changeNext() {
+            for (var i = 0; i < aSpan.length; i++) {
+                aSpan[i].style.transition = 'none';
+                aSpan[i].style.transform = 'rotate(0deg)';
+                if (iNow % 4 == 0) {
+                    iNow = 2;
+                }
+                if ((iNow + 1) % 4 == 0) {
+                    iNow = 1;
+                }
+                aSpan[i].children[0].style.backgroundImage = 'url(http://www.jq22.com/img/cs/500x300-' + iNow + '.png)';
+                aSpan[i].children[1].style.backgroundImage = 'url(http://www.jq22.com/img/cs/500x300-' + (iNow + 1) + '.png)';
+
+                bReady = true;
+            }
+        }
+    };
+};
+</script>
+
+</body>
+</html>

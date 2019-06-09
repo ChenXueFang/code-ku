@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>换一批</title>
+</head>
+<body>
+	<!--切换内容-->
+	<div id="box1" style="">111</div>
+	<div id="box2" style="display:none">222</div>
+	<div id="box3" style="display:none">333</div>
+	<!--点击按钮-->
+	<button class="btn1" id="button">按扭</button>
+	
+	<script type="text/javascript">
+		var i=0;
+		document.getElementById('button').onclick=function(){
+			var a=document.getElementsByTagName('div'),l=a.length;
+			a[i++].style.display='none';
+			if(i>=l)i=0;
+			a[i].style.display='block';
+		}
+	</script>
+</body>
+</html>

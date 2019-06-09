@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../CDN/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="datepicker/WdatePicker.js"></script>
+</head>
+<body>
+	<h2>日历插件使用</h2>
+	<hr>
+	<fieldset>
+		<legend>默认日历</legend>
+		<input id="d1" type="text" class="Wdate">
+	</fieldset>
+	<fieldset>
+		<legend>日历属性</legend>
+		<input id="d2" type="text" class="Wdate">
+	</fieldset>
+	<fieldset>
+		<legend>日历范围</legend>
+		<input id="d3" type="text" class="Wdate">
+	</fieldset>
+	<fieldset>
+		<legend>日历依赖</legend>
+		<input id="d4" type="text" class="Wdate">
+		<input id="d5" type="text" class="Wdate">
+	</fieldset>
+	<script type="text/javascript">
+	// 默认日历
+	$("#d1").focus(function(){
+		WdatePicker();
+	})
+	// 日历属性
+	$("#d2").focus(function(){
+		WdatePicker({
+			el:'d2',//不带#
+			dateFmt:'yyyy-MM-dd HH-mm-ss',
+			doubleCalendar: true,
+			isShowWeek: true
+		});
+	})
+	//日历范围
+	$("#d3").focus(function(){
+		WdatePicker({
+			doubleCalendar:true,
+			minDate: new Date(),
+			maxDate: '%y-%M-{%d+60}'
+		})
+	})
+	//日历依赖
+	$('#d4').focus(function(){
+		WdatePicker({
+			doubleCalendar:true,
+			onpicking:function(dp){
+				if(confirm('确定'+dp.cal.getNewDateStr()+'?')){
+					return false;
+				}
+				return true;
+			}
+		})
+	})
+	$('#d5').focus(function(){
+		var newDay = $dp.$D('d4',{d:5});
+		WdatePicker({
+			doubleCalendar:true,
+			minDate:"#F{$dp.$D('d4',{d:5})}"
+		})
+	})
+	</script>
+</body>
+</html>

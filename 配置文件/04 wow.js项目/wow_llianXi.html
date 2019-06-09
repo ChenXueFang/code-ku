@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="animate.css">
+    <style>
+        div {
+            width: 400px;
+            height: 400px;
+            line-height: 400px;
+            background: pink;
+            text-align: center;
+            border-radius: 50%;
+        }
+        div:nth-child(2){
+        	background: black;
+        }
+        div:nth-child(3){
+        	background: blue;
+        }
+        div:nth-child(4){
+        	background: yellow;
+        }
+        div:nth-child(5){
+        	background: gray;
+        }
+        div:nth-child(6){
+        	background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="wow wobble">看我</div>
+    <div class="wow bounceInUp">看我</div>
+    <div class="wow bounceInLeft">看我</div>
+    <div class="wow bounceInRight">看我</div>
+    <div class="wow swing">看我</div>
+    <div class="wow bounceInDown">看我</div>
+    
+    <script src="wow.min.js"></script>
+	<script>
+	// 使用navigator.userAgent来判断浏览器类型
+	//正则表达式 navigator.userAgent浏览器信息是否含有MSIE字样,就是判断是否为IE浏览器。
+	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+		new WOW().init();
+	};
+	</script>
+</body>
+</html>
